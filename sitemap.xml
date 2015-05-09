@@ -2,6 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jianghao.wang/categories/index.html</loc>
+    <lastmod>2015-05-09T11:01:47.046Z</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://jianghao.wang/tags/index.html</loc>
+    <lastmod>2015-05-09T11:01:30.715Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jianghao.wang/2015/05/09/hello-world/</loc>
     <lastmod>2015-05-09T07:14:13.886Z</lastmod>
   </url>
