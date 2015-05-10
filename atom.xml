@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Writing 1000 Words a Day Changes My Life]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jianghao.wang/"/>
-  <updated>2015-05-09T17:04:05.024Z</updated>
+  <updated>2015-05-10T06:13:52.533Z</updated>
   <id>http://jianghao.wang/</id>
   
   <author>
@@ -16,10 +16,10 @@
   
   <entry>
     <title><![CDATA[搭建 Hexo + Github 博客]]></title>
-    <link href="http://jianghao.wang/2015/05/10/%E6%90%AD%E5%BB%BA%20Hexo%20+%20Github%20%E5%8D%9A%E5%AE%A2/"/>
-    <id>http://jianghao.wang/2015/05/10/搭建 Hexo + Github 博客/</id>
-    <published>2015-05-09T17:04:05.024Z</published>
-    <updated>2015-05-09T17:04:05.024Z</updated>
+    <link href="http://jianghao.wang/2015/05/10/hexo-github/"/>
+    <id>http://jianghao.wang/2015/05/10/hexo-github/</id>
+    <published>2015-05-10T06:13:52.533Z</published>
+    <updated>2015-05-10T06:13:52.533Z</updated>
     <content type="html"><![CDATA[<p><img src="http://i.v2ex.co/5bb7J7NT.png" alt=""></p>
 <h2 id="引言">引言</h2><p>本工作的根本目的是在Github上搭建一个个人博客。其优点是免费，而且可以学习Git。因此本人从今天开始打算将博客平台转移到Github上来。</p>
 <p>Github上可以用来搭建博客的工具大概有三个：Hexo, Jekyll, octopress等。但是经过研究发现最好的方式还是采用<code>Github + Hexo</code>的方式，因此这里介绍的方法正是基于该方法。</p>
