@@ -4,7 +4,7 @@
   <subtitle><![CDATA[Writing 1000 Words a Day Changes My Life]]></subtitle>
   <link href="/atom.xml" rel="self"/>
   <link href="http://jianghao.wang/"/>
-  <updated>2015-05-10T06:13:52.533Z</updated>
+  <updated>2015-05-12T01:26:57.359Z</updated>
   <id>http://jianghao.wang/</id>
   
   <author>
@@ -13,6 +13,71 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title><![CDATA[Install Ghost on Linode]]></title>
+    <link href="http://jianghao.wang/2015/ghost-linode/"/>
+    <id>http://jianghao.wang/2015/ghost-linode/</id>
+    <published>2015-05-12T02:00:00.000Z</published>
+    <updated>2015-05-12T01:26:57.359Z</updated>
+    <content type="html"><![CDATA[<p><a href="www.linode.com">Linode.com</a> is a popular choice for a VPS hosting. This post will walk through how to install <a href="ghost.org">Ghost</a> on Linode.</p>
+<h2 id="Install">Install</h2><h3 id="Install_Node">Install Node</h3><p>Setup with Ubuntu, then install with Ubuntu<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">curl -sL http<span class="variable">s:</span>//<span class="keyword">deb</span>.nodesource.<span class="keyword">com</span>/setup | sudo bash -</span><br><span class="line">sudo apt-<span class="built_in">get</span> install -<span class="keyword">y</span> nodejs</span><br><span class="line">node -<span class="keyword">v</span></span><br><span class="line">npm -<span class="keyword">v</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Install_nginx">Install nginx</h3><pre><code>apt-<span class="keyword">get</span> install nginx
+</code></pre><h3 id="Download_and_Install_Ghost">Download and Install Ghost</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">mkdir -<span class="tag">p</span> /var/www/</span><br><span class="line">cd /var/www/</span><br><span class="line">wget -O ghost<span class="class">.zip</span> https:<span class="comment">//ghost.org/zip/ghost-latest.zip</span></span><br><span class="line">unzip -d ghost ghost<span class="class">.zip</span></span><br><span class="line">cd ghost</span><br><span class="line">npm install --production</span><br><span class="line">cp config<span class="class">.example</span><span class="class">.js</span> config.js</span><br></pre></td></tr></table></figure>
+<h2 id="Deploy">Deploy</h2><p>Edit your <code>config.js</code> file. In the production section replace the following: </p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">host</span>:<span class="value"> <span class="string">'127.0.0.1'</span>,</span></span></span><br></pre></td></tr></table></figure>
+<p>with</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="rule"><span class="attribute">host</span>:<span class="value"> <span class="string">'[your Linode public IP]'</span>,</span></span></span><br></pre></td></tr></table></figure>
+<p>Create Ghost User, and start ghost<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">useradd ghost</span><br><span class="line">chown -R <span class="string">ghost:</span>ghost <span class="regexp">/var/</span>www<span class="regexp">/ghost/</span></span><br><span class="line">cd <span class="regexp">/var/</span>www<span class="regexp">/ghost/</span></span><br><span class="line">npm start --production</span><br></pre></td></tr></table></figure></p>
+<h3 id="Keep_Ghost_Running">Keep Ghost Running</h3><ul>
+<li><a href="http://www.allaboutghost.com/keep-ghost-running-with-pm2/" target="_blank" rel="external">Keep Ghost Running with PM2</a></li>
+<li><p>or <a href="http://docs.ghostchina.com/zh/installation/deploy/" target="_blank" rel="external">Keep Ghost Running with <code>Forever</code></a></p>
+<ul>
+<li>Install forever: <code>npm install forever -g</code></li>
+<li>Deploy: <code>cd /var/www/ghost/ &amp;&amp; NODE_ENV=production forever start index.js</code></li>
+<li>Stop forever <code>forever stop index.js</code></li>
+<li>Check whether it is running: <code>forever list</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="Ghost_setup">Ghost setup</h2><p>Visiting <code>http://your ip address:2368/ghost/</code> will show <strong>Welcome to your new Ghost blog</strong>. </p>
+<p>There you have it, Node.js is installed, Ghost files are located in <code>/var/www/ghost</code>, and Ghost has been started. You can keep Ghost the way it is if you do not mind adding <code>:2368</code> to the end of your url, but we would highly recommend you check out the following two articles to help get your Ghost blog fully ready:</p>
+<ul>
+<li><a href="https://allaboutghost.com/how-to-proxy-port-80-to-2368-for-ghost-with-nginx/" target="_blank" rel="external">How to Proxy Port 80 to 2368 for Ghost with Nginx</a></li>
+</ul>
+<p>With <code>Nginx</code> installed, we now need to tell Nginx that Ghost is ready for requests on port 2368. New Nginx configuration files can be added into <code>/etc/nginx/conf.d/</code>. We would recommend creating your configuration file in this directory and naming it something meaningful, like: <code>your-domain-name.conf</code>. Once you have created your new Nginx conf file place the following into your file, replacing your-domain-name.conf.com with your domain name:</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> /etc/nginx/<span class="keyword">conf</span>.<span class="keyword">d</span>/</span><br><span class="line"><span class="keyword">ls</span></span><br><span class="line">vim jianghao.wang.<span class="keyword">conf</span></span><br></pre></td></tr></table></figure>
+<p>add following to <code>jianghao.wang.conf</code></p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="title">server</span> &#123;</span><br><span class="line">    <span class="title">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="title">server_name</span> **ip addess**;</span><br><span class="line">    <span class="title">location</span> / &#123;</span><br><span class="line">        <span class="title">proxy_set_header</span>   X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">        <span class="title">proxy_set_header</span>   Host      <span class="variable">$http_host</span>;</span><br><span class="line">        <span class="title">proxy_pass</span>         <span class="url">http://127.0.0.1:2368</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>If you find a sample Nginx configuration files found in /etc/nginx/conf.d/, I would recommend <strong>deleting</strong> them. Now restart Nginx to make your changes take affect: </p>
+<figure class="highlight puppet"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">rm </span><br><span class="line">sudo <span class="keyword">service</span> nginx <span class="literal">restart</span></span><br></pre></td></tr></table></figure>
+<p>Your Ghost blog is now reachable via your domain name, on port 80, through Nginx to port 2368.</p>
+<hr>
+<h3 id="Reference:">Reference:</h3><blockquote>
+<ol>
+<li><a href="http://www.howtoinstallghost.com/how-to-install-ghost-on-linode-vps/" target="_blank" rel="external">How To Install Ghost On Linode</a></li>
+</ol>
+</blockquote>
+]]></content>
+    <summary type="html">
+    <![CDATA[<p><a href="www.linode.com">Linode.com</a> is a popular choice for a VPS hosting. This post will walk through how to install <a href="ghost.]]>
+    </summary>
+    
+      <category term="Ghost" scheme="http://jianghao.wang/tags/Ghost/"/>
+    
+      <category term="Linode" scheme="http://jianghao.wang/tags/Linode/"/>
+    
+      <category term="Node" scheme="http://jianghao.wang/tags/Node/"/>
+    
+      <category term="forever" scheme="http://jianghao.wang/tags/forever/"/>
+    
+      <category term="nginx" scheme="http://jianghao.wang/tags/nginx/"/>
+    
+      <category term="web" scheme="http://jianghao.wang/tags/web/"/>
+    
+      <category term="technology" scheme="http://jianghao.wang/categories/technology/"/>
+    
+  </entry>
   
   <entry>
     <title><![CDATA[搭建 Hexo + Github 博客]]></title>
