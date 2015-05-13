@@ -170,7 +170,7 @@
             <span class="post-comments-count">
             &nbsp; | &nbsp;
             <a href="/2015/hexo-github/#comments" >
-              <span class="post-comments-count ds-thread-count" data-thread-key="2015/hexo-github/"></span>
+              <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2015/hexo-github/"></span>
             </a>
           </span>
           
@@ -283,8 +283,8 @@ npm install hexo --<span class="keyword">save</span>
     
       <div class="comments" id="comments">
         
-          <div class="ds-thread" data-thread-key="2015/hexo-github/"
-               data-title="搭建 Hexo + Github 博客" data-url="http://jianghao.wang/2015/hexo-github/">
+          <div id="disqus_thread">
+            <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
           </div>
         
       </div>
@@ -294,10 +294,6 @@ npm install hexo --<span class="keyword">save</span>
 
         </div>
 
-        
-        <!-- 多说热评文章-->
-        <p>热评文章</p>
-        <div class="ds-top-threads" data-range="weekly" data-num-items="4"></div>
         
       </div>
 
@@ -1008,24 +1004,30 @@ npm install hexo --<span class="keyword">save</span>
 
   
   
+  
 
   
+
     
+      
+    
+
+    <script type="text/javascript">
+      var disqus_shortname = 'jianghaowang';
+      var disqus_identifier = '2015/hexo-github/';
+      var disqus_url = 'http://jianghao.wang/2015/hexo-github/';
+
+      (function(){
+        var dsq = document.createElement('script');
+        dsq.type = 'text/javascript';
+        dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      }());
+    </script>
   
 
-  <script type="text/javascript">
-    var duoshuoQuery = {short_name:"wangjh"};
-    (function() {
-      var ds = document.createElement('script');
-      ds.type = 'text/javascript';ds.async = true;
-      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-      ds.charset = 'UTF-8';
-      (document.getElementsByTagName('head')[0]
-      || document.getElementsByTagName('body')[0]).appendChild(ds);
-    })();
-  </script>
 
-  
 
 
   
