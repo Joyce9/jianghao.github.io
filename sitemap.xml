@@ -2,6 +2,11 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://jianghao.wang/about/index.html</loc>
+    <lastmod>2015-05-15T10:06:34.454Z</lastmod>
+  </url>
+  
+  <url>
     <loc>http://jianghao.wang/2015/ghost-linode/</loc>
     <lastmod>2015-05-13T04:40:07.385Z</lastmod>
   </url>
@@ -14,11 +19,6 @@
   <url>
     <loc>http://jianghao.wang/2015/hexo-github/</loc>
     <lastmod>2015-05-10T06:13:52.533Z</lastmod>
-  </url>
-  
-  <url>
-    <loc>http://jianghao.wang/about/index.html</loc>
-    <lastmod>2015-05-09T17:40:47.820Z</lastmod>
   </url>
   
   <url>
